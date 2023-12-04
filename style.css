@@ -1,0 +1,547 @@
+/* 
+General styling
+*/
+@font-face {
+  font-family: "Poppins";
+  src: url("./Poppins/Poppins-Regular.ttf");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    rgb(24, 22, 22),
+    rgb(79, 3, 6),
+    rgb(24, 22, 22)
+  );
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #1d1d1d;
+  padding: 5rem 0 0 0;
+}
+
+/* 
+Header styling
+*/
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(24, 22, 22);
+  color: white;
+  height: 5rem;
+  width: 100%;
+  position: fixed;
+  z-index: 5;
+  font-family: "Poppins";
+}
+
+#filmy_logo,
+#filmy_slogan {
+  padding: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+#filmy_logo {
+  display: flex;
+  gap: 1rem;
+}
+
+#filmy_slogan {
+  font-style: italic;
+  font-size: 0.5rem;
+}
+
+#filmy_version {
+  position: absolute;
+  right: -1.25rem;
+  bottom: 0.5rem;
+}
+
+/* 
+Container styling 
+*/
+#container {
+  height: 100%;
+  display: flex;
+  flex: 1;
+  background: linear-gradient(
+    90deg,
+    rgb(24, 22, 22),
+    rgb(79, 3, 6),
+    rgb(24, 22, 22)
+  );
+}
+
+/* 
+CONTAINER Left - the Panel with Home, Favorites, TV Series etc. links 
+*/
+#left_panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: rgb(33, 32, 32);
+  height: fit-content;
+  border-bottom-right-radius: 5px;
+}
+
+#left_panel > .panel_link > .p_link {
+  padding: 1.5rem 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+  transition: background-color 1.5s ease-in-out, scale 1s ease;
+}
+
+.panel_link:hover > .p_link {
+  background-color: rgb(229, 11, 20);
+}
+
+.panel_link:hover > .p_link i {
+  scale: 1.75;
+}
+
+/* 
+CONTAINER Right - the section with filters and Ul where movies are rendered.
+*/
+#right_movies {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 
+Movie Filters - searchbar, get random movies, sort movies. 
+*/
+#movie_filters {
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 2rem;
+  padding: 1rem;
+  color: white;
+  background-color: rgb(39, 39, 39);
+}
+
+#search_movie {
+  position: relative;
+}
+
+#search_movie_input {
+  font-size: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 2.25rem;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(24, 22, 22);
+  font-family: "Poppins", sans-serif;
+  transition: scale 1s ease;
+}
+
+#search_movie_input:focus {
+  scale: 1.05;
+}
+
+#search_movie_btn {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  border: none;
+  background-color: none;
+  color: white;
+  background-color: rgb(24, 22, 22);
+}
+
+#movie_sort_by_rating {
+  display: flex;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+#movie_sort_by_rating > p,
+#movie_sort_by_rating > select {
+  font-size: 1.25rem;
+  border-radius: 5px;
+}
+
+#sort_btn,
+#sort_select {
+  pointer-events: all;
+}
+
+.random_sort_links {
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: scale 1.5s ease, color 1.5s ease;
+}
+
+.random_sort_links:hover {
+  color: rgb(229, 11, 20);
+  scale: 1.05;
+}
+
+.random_sort_links:active {
+  padding: 0.35rem 0.5rem;
+  border-radius: 5px;
+  color: rgb(229, 11, 20);
+  background-color: rgb(24, 22, 22);
+}
+
+.random_sort_links > p {
+  pointer-events: none;
+}
+
+/* 
+Movie List - rendered movies, the Ul #movie_list containing them, 'No movies found' notification
+*/
+#movie_list {
+  height: 100%;
+  list-style: none;
+  padding: 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 20rem));
+  justify-content: center;
+  gap: 1rem;
+}
+
+.no_movie_found {
+  position: absolute;
+  inset: 0;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  display: none;
+  opacity: 0;
+  animation: showOpacityEffect 0.5s ease-in-out forwards;
+}
+
+.no_movie_found p {
+  color: white;
+}
+
+.movie_card {
+  height: 36rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: scale 1s ease, border 1s ease, background-color 1s ease;
+  animation: 1.5s showOpacityEffect forwards ease-in-out;
+  position: relative;
+}
+
+.movie_card:hover {
+  scale: 1.01;
+  border: 2px solid rgb(243, 243, 45);
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.single_movie_image {
+  align-self: center;
+  height: 20rem;
+  width: 14rem;
+}
+
+.single_movie_name {
+  align-self: center;
+  overflow: hidden;
+}
+
+.single_movie_details {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.single_movie_description {
+  text-align: center;
+  font-style: italic;
+  height: 5rem;
+  overflow: hidden;
+}
+
+.single_movie_rating {
+  align-self: center;
+}
+
+.single_movie_rating_value {
+  color: rgb(243, 243, 45);
+}
+
+.single_movie_fave_and_date {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.single_movie_favorite {
+  font-size: 1.25rem;
+  color: rgb(229, 11, 20);
+  transition: scale 1.5s ease, background-color 1.5s ease;
+}
+
+.single_movie_favorite:hover {
+  color: rgb(229, 93, 98);
+  scale: 1.5;
+}
+
+/* 
+Favorites - favorite movies list container, the list itself, the Li children (movies)
+and all relevant messages & effects styling
+*/
+.favorites_container {
+  position: absolute;
+  top: 0;
+  min-height: 50vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    90deg,
+    rgb(24, 22, 22),
+    rgb(79, 3, 6),
+    rgb(24, 22, 22)
+  );
+  opacity: 0;
+  transform: translateX(-100vw);
+  transition: transform 1s ease, opacity 1s ease;
+  z-index: 10;
+}
+
+#favorites_hide {
+  cursor: pointer;
+  align-self: center;
+  color: white;
+  padding: 1rem;
+  font-size: 2rem;
+  height: fit-content;
+  width: fit-content;
+  text-align: center;
+  transition: scale 1s ease;
+  border-radius: 5px;
+}
+
+#favorites_hide:hover {
+  color: rgb(229, 11, 20);
+  scale: 1.05;
+}
+
+#favorites_hide:active {
+  border-radius: 5px;
+  color: rgb(229, 11, 20);
+  background-color: rgb(24, 22, 22);
+}
+
+#favorites_list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 15rem));
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  height: fit-content;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.favorite_movie_card {
+  height: 22rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.45);
+  border-radius: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: scale 1s ease, border 1s ease, background-color 1s ease,
+    border 1s ease;
+  animation: 1.5s showOpacityEffect forwards ease-in-out;
+}
+
+.favorite_movie_card:hover {
+  border: 1px solid rgb(243, 243, 45);
+  scale: 1.025;
+}
+
+.favorite_image {
+  width: 9rem;
+  height: 12rem;
+  border-radius: 5px;
+}
+
+.favorite_delete {
+  align-self: center;
+  width: fit-content;
+  padding: 0.2rem 0.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: white;
+  background-color: crimson;
+  transition: scale 1.5s ease, background-color 1.5s ease;
+}
+
+.favorite_delete:hover {
+  background-color: rgb(229, 93, 98);
+  scale: 1.1;
+}
+
+.no_favorites_message {
+  font-size: 1.25;
+  color: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 2rem 1rem;
+  font-size: 1.35rem;
+  text-align: center;
+}
+
+.add_to_favorites_message {
+  opacity: 0;
+  align-self: center;
+  text-align: center;
+  font-size: 1.25rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: showOpacityEffect 0.5s ease-in-out forwards;
+}
+
+/* 
+Javascript and Helper classes - classes for additional styling and Javascript DOM manipulation
+*/
+.panel_link_icon {
+  margin: 0.75rem 0;
+}
+
+.red_span {
+  color: rgb(229, 11, 20);
+}
+
+.panel_link i {
+  transition: scale ease 1s;
+}
+
+.d_flex {
+  display: flex !important;
+}
+
+.display_none {
+  display: none;
+}
+
+.no_pointer_events {
+  pointer-events: none;
+}
+
+.all_pointer_events {
+  pointer-events: all;
+}
+
+.show_favorites {
+  opacity: 1;
+  transform: translateX(0vw);
+}
+
+/* 
+Animations
+*/
+@keyframes showOpacityEffect {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showFavorites {
+  0% {
+    opacity: 0;
+    transform: translateX(-100vw);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0vw);
+  }
+}
+
+/* 
+Media responsiveness
+*/
+@media screen and (max-width: 810.18px) {
+  #header {
+    flex-direction: column;
+    height: fit-content;
+    gap: 1rem;
+  }
+
+  #filmy_version {
+    right: -1rem;
+    bottom: 0rem;
+  }
+
+  #filmy_slogan {
+    align-self: flex-end;
+    font-size: 0.5rem;
+  }
+
+  #app {
+    padding: 9rem 0 0 0;
+  }
+
+  #movie_filters {
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    color: white;
+    background-color: rgb(39, 39, 39);
+  }
+}

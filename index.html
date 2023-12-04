@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/movie_icon.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="./fontawesome-free-6.5.1-web/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>SJ Filmy App</title>
+  </head>
+  <body>
+    <!-- HEADER (Fixed header with logo)-->
+    <header class="header">
+      <div id="filmy_logo">
+        <h1 id="filmy_headline">filmy<span class="red_span">sk</span></h1>
+        <h1><i class="fa-solid fa-video"></i></h1>
+        <p id="filmy_version">4.7.1</p>
+      </div>
+      <div id="filmy_slogan">
+        <h1 id="slogan">
+          Watch. <span class="red_span">Download.</span> Enjoy.
+        </h1>
+      </div>
+    </header>
+    <!-- APP (Functional part of the application)-->
+    <div id="app">
+      <!-- Whole page container  -->
+      <div id="container">
+        <!-- Left panel (Side panel with links)-->
+        <section id="left_panel">
+          <!-- Get Favorites link -->
+          <div class="panel_link">
+            <p class="p_link" id="favorites_link">
+              <i
+                class="fa-regular fa-heart panel_link_icon"
+                style="pointer-events: none"
+              ></i
+              ><br />Favorites
+            </p>
+            <div class="favorites_container">
+              <p id="favorites_hide">
+                <i
+                  class="fa-solid fa-angles-left fa-beat"
+                  style="color: rgb(229, 11, 20)"
+                ></i>
+                Hide favorite movies
+              </p>
+              <ul id="favorites_list"></ul>
+            </div>
+          </div>
+          <div class="panel_link">
+            <p class="p_link">
+              <i class="fa-solid fa-house-chimney panel_link_icon"></i
+              ><br />Home
+            </p>
+          </div>
+          <div class="panel_link">
+            <p class="p_link">
+              <i class="fa-solid fa-film panel_link_icon"></i><br />Movies
+            </p>
+          </div>
+          <div class="panel_link">
+            <p class="p_link">
+              <i class="fa-solid fa-tv panel_link_icon"></i><br />TV Series
+            </p>
+          </div>
+          <div class="panel_link">
+            <p class="p_link">
+              <i class="fa-solid fa-trophy panel_link_icon"></i><br />Top
+            </p>
+          </div>
+          <div class="panel_link">
+            <p class="p_link">
+              <i class="fa-solid fa-layer-group panel_link_icon"></i
+              ><br />Collections
+            </p>
+          </div>
+          <div class="panel_link">
+            <p class="p_link">
+              <i class="fa-solid fa-gear panel_link_icon"></i><br />Settings
+            </p>
+          </div>
+        </section>
+        <!-- Right Panel (Rendered list of movies) -->
+        <section id="right_movies">
+          <!-- Movies filters (Panel with search input for searching movies and Random movie link)-->
+          <div id="movie_filters">
+            <!-- Searchbar and it's input for searching movies -->
+            <form id="search_movie">
+              <input
+                type="text"
+                id="search_movie_input"
+                placeholder="Enter a movie's name"
+                autofocus
+              />
+              <button type="submit" id="search_movie_btn">
+                <i
+                  class="fa-solid fa-magnifying-glass fa-beat"
+                  style="color: rgb(229, 11, 20)"
+                ></i>
+              </button>
+            </form>
+            <!-- Get random movies -->
+            <div id="movie_random" class="random_sort_links">
+              <p id="get_random_movies">
+                <i class="fa-solid fa-dice fa-shake"></i>
+                Get random movies!
+              </p>
+            </div>
+            <!-- Sort by ratings -->
+            <div id="movie_sort_by_rating">
+              <p class="random_sort_links" id="sort_btn">
+                <i class="fa-solid fa-arrow-down-wide-short"></i>
+                Sort by ratings
+              </p>
+              <select id="sort_select">
+                <option id="option_from_highest" value="from_highest">
+                  From highest
+                </option>
+                <option id="option_from_highest" value="from_lowest">
+                  From lowest
+                </option>
+              </select>
+            </div>
+          </div>
+          <!-- Movies list (Ul element for rendering fetched and filtered movies)-->
+          <ul id="movie_list" style="position: relative">
+            <!-- No movies found notification -->
+            <div class="no_movie_found">
+              <p id="no_movie_message">
+                No movies related to the search term were found.
+              </p>
+            </div>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
