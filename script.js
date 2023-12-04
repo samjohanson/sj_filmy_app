@@ -90,7 +90,7 @@ const getMovies = async (searchTerm) => {
 A function that first checks whether the movie which is clicked to be added to Favorites is not already in them,
 and if not then proceeds to add the movie the the Favorites.
 Then the function destroys the previous copy of "favorite_movies_array" array from local storage, and creates a brand new
-"favorite_movies_array" array which contains the just-now added new favorite movie, and saves it in the local storage.
+"favorite_movies_array" array which contains the just-now added new favorite movie, and saves the array in the local storage.
 */
 const addToFavorites = function () {
   // Const with the clicked Li parent element of whose "Add to favorites"
@@ -123,13 +123,13 @@ const addToFavorites = function () {
     }, 1000);
     return;
   }
-  //Push the movie into the array of favorite movies, and use it to re-render
+  //Push the movie into the array of favorite movies and use it to re-render
   // the list of favorite movies, then display a relevant notification.
   favoritesArray.push(clickedMovie);
 
   renderFavorites(favoritesArray);
 
-  // Display notification that the movie has been successfully added to Favorites
+  // Display notification that the movie has been successfully added to Favorites.
   clickedMovie.innerHTML =
     "<p class='add_to_favorites_message'><i class='fa-solid fa-heart' style='pointer-events: none; color: rgb(229, 11, 20); height: 100%; width: 100%'></i><br />Added to favorites</p>";
 
@@ -149,7 +149,7 @@ const addToFavorites = function () {
   }, 1000);
 
   // Delete old array of favorite movies from local storage,
-  // and create a brand-new one into which we push the just now
+  // and create a brand-new one into which we push the just-now
   // favorited movie object, and then save it into the local storage.
 
   localStorage.removeItem("favorite_movies_array");
@@ -366,7 +366,7 @@ const trashFavorite = (event) => {
 
   // Delete old array of favorite movies from local storage,
   // and create a brand-new one which no-longer contains the
-  // just now deleted movie, and then save it into the local storage.
+  // just-now deleted movie, and then save it into the local storage.
   localStorage.removeItem("favorite_movies_array");
 
   const favoritedMovies = document.getElementsByClassName(
